@@ -8,10 +8,7 @@ namespace SuperHeroApi.Controllers
     [ApiController]
     public class SuperHeroController : ControllerBase
     {
-        [HttpGet]
-        public async Task<ActionResult<List<SuperHero>>> Get()
-        {
-            var heroes = new List<SuperHero>
+        private static List<SuperHero> heroes = new List<SuperHero>
             {
                 new SuperHero {
                     Id = 1,
@@ -22,6 +19,9 @@ namespace SuperHeroApi.Controllers
                 }
             };
 
+        [HttpGet]
+        public async Task<ActionResult<List<SuperHero>>> Get()
+        {
             return Ok(heroes);
         }
     }
