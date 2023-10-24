@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SuperHeroApi.Data;
 using SuperHeroApi.Models;
 
 namespace SuperHeroApi.Controllers
@@ -25,6 +26,12 @@ namespace SuperHeroApi.Controllers
                     Place = "Long Island"
                 }
             };
+        private readonly DataContext _context;
+
+        public SuperHeroController(DataContext context)
+        {
+            _context = context;
+        }
 
         [HttpGet]
         public async Task<ActionResult<SuperHero>> Get()
