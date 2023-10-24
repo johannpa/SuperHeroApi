@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SuperHeroApi.Data;
 using SuperHeroApi.Models;
 
@@ -11,13 +12,6 @@ namespace SuperHeroApi.Controllers
     {
         private static List<SuperHero> heroes = new List<SuperHero>
             {
-                new SuperHero {
-                    Id = 1,
-                    Name = "Spider Man",
-                    FirstName = "Peter",
-                    LastName = "Parker",
-                    Place = "New York City"
-                },
                 new SuperHero {
                     Id = 2,
                     Name = "Iron Man",
@@ -36,7 +30,7 @@ namespace SuperHeroApi.Controllers
         [HttpGet]
         public async Task<ActionResult<SuperHero>> Get()
         {
-            return Ok(heroes);
+            return Ok(await _context.SuperHeroes.ToListAsync());
         }
 
         [HttpGet("{id}")]
